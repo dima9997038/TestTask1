@@ -9,7 +9,6 @@ import java.util.List;
 
 @Component
 public class FileWriterToResourcesServiceImpl implements FileWriterToResourcesService {
-
     @Override
     public void writeToFile(String fileName, List<String> result) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(fileName);
