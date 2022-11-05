@@ -10,9 +10,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class CreateResultServiceImplTest {
+
     @Autowired
     CreateInformationAboutVowelsImpl createInformationAboutVowels;
     @Autowired

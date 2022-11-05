@@ -19,7 +19,7 @@ public class CreateInformationAboutVowelsImpl implements CreateInformationAboutV
             Set<Character> characterSet = new HashSet<>();
             for (int j = 0; j < word.length(); j++) {
                 totalCountOfSymbol++;
-                if(setVowels.contains(word.charAt(j))){
+                if (setVowels.contains(word.charAt(j))) {
                     characterSet.add(word.charAt(j));
                     countOfVowels++;
                 }

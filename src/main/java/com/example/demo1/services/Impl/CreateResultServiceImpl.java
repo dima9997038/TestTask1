@@ -6,14 +6,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class CreateResultServiceImpl implements CreateResultService {
     private final CreateInformationAboutVowelsImpl createInformationAboutVowels;
     private final GetListFromStringImpl getListFromString;
+
     public CreateResultServiceImpl(CreateInformationAboutVowelsImpl createInformationAboutVowels, GetListFromStringImpl getListFromString) {
         this.createInformationAboutVowels = createInformationAboutVowels;
         this.getListFromString = getListFromString;
     }
+
     @Override
     public List<String> getResult(String text) {
         List<InformationOfVowelsInWord> info = createInformationAboutVowels.info(getListFromString.words(text));
@@ -22,7 +25,7 @@ public class CreateResultServiceImpl implements CreateResultService {
         List<Double> countOfVowels = new ArrayList<>();
         String characterSequence = info.get(0).getCharacterSequence();
         int totalCount = info.get(0).getTotalCountOfSymbol();
-        boolean flagAdd=false;
+        boolean flagAdd = false;
         for (InformationOfVowelsInWord el : info) {
             if (!el.getTotalCountOfSymbol().equals(totalCount) || !el.getCharacterSequence().equals(characterSequence)) {
                 if (flagAdd) {
@@ -32,14 +35,15 @@ public class CreateResultServiceImpl implements CreateResultService {
                 characterSequence = el.getCharacterSequence();
                 totalCount = el.getTotalCountOfSymbol();
             }
-            countOfVowels.add(el.getCountOfVowels()*1.0);
-            flagAdd=true;
+            countOfVowels.add(el.getCountOfVowels() * 1.0);
+            flagAdd = true;
         }
         if (flagAdd) {
-            extracted(result,countOfVowels,characterSequence,totalCount);
+            extracted(result, countOfVowels, characterSequence, totalCount);
         }
         return result;
     }
+
     private static void extracted(List<String> result, List<Double> countOfVowels, String characterSequence, int totalCount) {
         String s = "(" + characterSequence + "," + totalCount + ")" + "->" + countOfVowels.stream()
                 .reduce(0.0, Double::sum) / countOfVowels.size();

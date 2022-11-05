@@ -12,8 +12,8 @@ public class FileWriterToResourcesServiceImpl implements FileWriterToResourcesSe
     @Override
     public void writeToFile(String fileName, List<String> result) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(fileName);
-        for (String str: result) {
-            str=str+"\r\n";
+        for (String str : result) {
+            str = str + "\r\n";
             byte[] strToBytes = str.getBytes();
             outputStream.write(strToBytes);
         }

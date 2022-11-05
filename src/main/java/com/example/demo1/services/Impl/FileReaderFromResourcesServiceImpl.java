@@ -16,9 +16,11 @@ import java.nio.charset.StandardCharsets;
 public class FileReaderFromResourcesServiceImpl implements FileReaderFromResourcesService {
     final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private final ResourceLoader resourceLoader;
+
     public FileReaderFromResourcesServiceImpl(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
     }
+
     @Override
     public String readFromFile(String fileName) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:" + fileName);

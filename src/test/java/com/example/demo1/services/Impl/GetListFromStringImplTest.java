@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class GetListFromStringImplTest {
+
     @Autowired
     GetListFromStringImpl getListFromString;
 
