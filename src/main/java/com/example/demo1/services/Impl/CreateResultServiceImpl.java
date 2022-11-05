@@ -19,7 +19,7 @@ public class CreateResultServiceImpl implements CreateResultService {
 
     @Override
     public List<String> getResult(String text) {
-        List<InformationOfVowelsInWord> info = createInformationAboutVowels.info(getListFromString.words(text));
+        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(getListFromString.words(text));
         info.sort((i1, i2) -> i2.getTotalCountOfSymbol().compareTo(i1.getTotalCountOfSymbol()));
         List<String> result = new ArrayList<>();
         List<Double> countOfVowels = new ArrayList<>();

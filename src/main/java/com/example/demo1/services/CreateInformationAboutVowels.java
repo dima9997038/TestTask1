@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface CreateInformationAboutVowels {
-    List<InformationOfVowelsInWord> info(List<String> words);
+    List<InformationOfVowelsInWord> getInformationAboutCountOfVowelsAndTotalCountOfSymbol(List<String> words);
 }

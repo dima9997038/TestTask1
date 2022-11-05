@@ -27,7 +27,7 @@ class CreateInformationAboutVowelsImplTest {
         words.add("Platon");
         words.add("made");
         words.add("bamboo");
-        List<InformationOfVowelsInWord> info = createInformationAboutVowels.info(words);
+        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(words);
         assertEquals(info.toString(), "[InformationOfVowelsInWord(characterSequence={a, o}, countOfVowels=2, totalCountOfSymbol=6), InformationOfVowelsInWord(characterSequence={a, e}, countOfVowels=2, totalCountOfSymbol=4), InformationOfVowelsInWord(characterSequence={a, o}, countOfVowels=3, totalCountOfSymbol=6)]");
     }
 

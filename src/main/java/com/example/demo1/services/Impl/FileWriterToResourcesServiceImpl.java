@@ -14,8 +14,7 @@ public class FileWriterToResourcesServiceImpl implements FileWriterToResourcesSe
         FileOutputStream outputStream = new FileOutputStream(fileName);
         for (String str : result) {
             str = str + "\r\n";
-            byte[] strToBytes = str.getBytes();
-            outputStream.write(strToBytes);
+            outputStream.write(str.getBytes());
         }
         outputStream.close();
     }

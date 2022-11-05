@@ -9,9 +9,9 @@ import java.util.*;
 @Component
 public class CreateInformationAboutVowelsImpl implements CreateInformationAboutVowels {
     @Override
-    public List<InformationOfVowelsInWord> info(List<String> words) {
+    public List<InformationOfVowelsInWord> getInformationAboutCountOfVowelsAndTotalCountOfSymbol(List<String> words) {
         List<InformationOfVowelsInWord> result = new ArrayList<>();
-        Set<Character> setVowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'y'));
+        Set<Character> vowelsSet = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'y'));
         for (String word : words) {
             InformationOfVowelsInWord informationOfVowelsInWord = new InformationOfVowelsInWord(null, 0, 0);
             int countOfVowels = 0;
@@ -19,7 +19,7 @@ public class CreateInformationAboutVowelsImpl implements CreateInformationAboutV
             Set<Character> characterSet = new HashSet<>();
             for (int j = 0; j < word.length(); j++) {
                 totalCountOfSymbol++;
-                if (setVowels.contains(word.charAt(j))) {
+                if (vowelsSet.contains(word.charAt(j))) {
                     characterSet.add(word.charAt(j));
                     countOfVowels++;
                 }
