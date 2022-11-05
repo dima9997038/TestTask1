@@ -24,4 +24,11 @@ class GetListFromStringImplTest {
         List<String> words = getListFromString.getListWordsFromInputText("Platon made bamboo boats.");
         assertEquals(words.toString(), "[platon, made, bamboo, boats]");
     }
+
+    @Test
+    @DisplayName("Test input from empty String to List")
+    void getListFromFromStringTest() {
+        List<String> words = getListFromString.getListWordsFromInputText("");
+        assertEquals(words.toString(), "[]");
+    }
 }

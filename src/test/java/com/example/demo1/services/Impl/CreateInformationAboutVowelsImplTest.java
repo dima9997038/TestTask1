@@ -22,7 +22,7 @@ class CreateInformationAboutVowelsImplTest {
     CreateInformationAboutVowelsImpl createInformationAboutVowels;
 
     @Test
-    @DisplayName("Test create information about vowels")
+    @DisplayName("Test1 create information about vowels")
     void createInformationAboutVowels() {
         List<String> words = new ArrayList<>(Arrays.asList("Platon","made","bamboo"));
         List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(words);
@@ -33,6 +33,32 @@ class CreateInformationAboutVowelsImplTest {
         expected.add(expected1);
         expected.add(expected2);
         expected.add(expected3);
+        assertEquals(info,expected);
+    }
+
+    @Test
+    @DisplayName("Test2 create information about vowels")
+    void createInformationAboutVowels2() {
+        List<String> words = new ArrayList<>(Arrays.asList("yuoojjeeaa","oo"));
+        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(words);
+        InformationOfVowelsInWord expected1=new InformationOfVowelsInWord("{a, e, o, u, y}",8,10);
+        InformationOfVowelsInWord expected2=new InformationOfVowelsInWord("{o}",2,2);
+        List<InformationOfVowelsInWord> expected = new ArrayList<>();
+        expected.add(expected1);
+        expected.add(expected2);
+        assertEquals(info,expected);
+    }
+
+    @Test
+    @DisplayName("Test2 create information about vowels from digital string")
+    void createInformationAboutVowelsFromDigitalString() {
+        List<String> words = new ArrayList<>(Arrays.asList("11223344","9"));
+        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(words);
+        InformationOfVowelsInWord expected1= new InformationOfVowelsInWord("{}",0,8);
+        InformationOfVowelsInWord expected2= new InformationOfVowelsInWord("{}",0,1);
+        List<InformationOfVowelsInWord> expected = new ArrayList<>();
+        expected.add(expected1);
+        expected.add(expected2);
         assertEquals(info,expected);
     }
 }

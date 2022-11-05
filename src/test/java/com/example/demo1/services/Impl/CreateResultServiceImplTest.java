@@ -25,6 +25,14 @@ class CreateResultServiceImplTest {
     void getResultShouldReturnGrouperVowels() {
         CreateResultServiceImpl createResultService = new CreateResultServiceImpl(createInformationAboutVowels, getListFromString);
         List<String> result = createResultService.getResult("Platon made bamboo boats.");
-        assertEquals(result.toString(), "[({a, o},6)->2.5, ({a, o},5)->2.0, ({a, e},4)->2.0]");
+        assertEquals(result.toString(), "[({a, o},5)->2.0, ({a, o},6)->2.5, ({a, e},4)->2.0]");
+    }
+
+    @Test
+    @DisplayName("Test converting empty input string into output string")
+    void getResultShouldReturnGrouperVowelsFromEmptyString() {
+        CreateResultServiceImpl createResultService = new CreateResultServiceImpl(createInformationAboutVowels, getListFromString);
+        List<String> result = createResultService.getResult("");
+        assertEquals(result.toString(), "[]");
     }
 }

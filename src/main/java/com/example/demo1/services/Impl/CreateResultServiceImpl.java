@@ -28,12 +28,12 @@ public class CreateResultServiceImpl implements CreateResultService {
                 .collect(Collectors.groupingBy(InformationOfVowelsInWord::getCharacterSequence, Collectors.groupingBy(InformationOfVowelsInWord::getTotalCountOfSymbol)));
         groupByCharacterSequenceAndTotalCountSymbol.forEach((key, value) -> value.forEach((key1, value1) -> {
             List<Double> countOfVowels = value1.stream().map(informationOfVowelsInWord -> informationOfVowelsInWord.getCountOfVowels() * 1.0).collect(Collectors.toList());
-            extracted(result, countOfVowels, key, key1);
+            addStringToListOfResult(result, countOfVowels, key, key1);
         }));
         return result;
     }
 
-    private static void extracted(List<String> result, List<Double> countOfVowels, String characterSequence, int totalCount) {
+    private static void addStringToListOfResult(List<String> result, List<Double> countOfVowels, String characterSequence, int totalCount) {
         String s = "(" + characterSequence + "," + totalCount + ")" + "->" + countOfVowels.stream()
                 .reduce(0.0, Double::sum) / countOfVowels.size();
         result.add(s);
