@@ -6,5 +6,5 @@ import java.util.List;
 
 @Service
 public interface GetListWordsFromString {
-    List<String> words(String data);
+    List<String> getListWordsFromInputText(String data);
 }

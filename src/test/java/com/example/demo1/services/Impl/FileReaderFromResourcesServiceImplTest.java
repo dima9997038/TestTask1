@@ -14,18 +14,23 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class FileReaderFromResourcesServiceImplTest {
-    
+
     @Autowired
     FileReaderFromResourcesServiceImpl fileReaderFromResourcesService;
 
     @Test
     @DisplayName("Test IOException when reading non-existent file")
     public void whenIOExceptionThrown() {
-        Exception exception = assertThrows(IOException.class, () -> {
-            fileReaderFromResourcesService.readFromFile("in.txt");
-        });
+        Exception exception = assertThrows(IOException.class, () -> fileReaderFromResourcesService.readFromFile("in.txt"));
         String expectedMessage = "class path resource [in.txt] cannot be opened because it does not exist";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("Test reading file")
+    public void readFileTest() throws IOException {
+        String fromFile = fileReaderFromResourcesService.readFromFile("input.txt");
+        assertNotNull(fromFile);
     }
 }

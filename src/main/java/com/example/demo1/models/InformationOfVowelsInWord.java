@@ -1,13 +1,11 @@
 package com.example.demo1.models;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Data
+@Builder
 public class InformationOfVowelsInWord {
     private String characterSequence;
     private Integer countOfVowels;

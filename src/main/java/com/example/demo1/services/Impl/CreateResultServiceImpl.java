@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class CreateResultServiceImpl implements CreateResultService {
@@ -19,28 +21,15 @@ public class CreateResultServiceImpl implements CreateResultService {
 
     @Override
     public List<String> getResult(String text) {
-        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(getListFromString.words(text));
-        info.sort((i1, i2) -> i2.getTotalCountOfSymbol().compareTo(i1.getTotalCountOfSymbol()));
+        List<InformationOfVowelsInWord> info = createInformationAboutVowels.getInformationAboutCountOfVowelsAndTotalCountOfSymbol(getListFromString.getListWordsFromInputText(text));
         List<String> result = new ArrayList<>();
-        List<Double> countOfVowels = new ArrayList<>();
-        String characterSequence = info.get(0).getCharacterSequence();
-        int totalCount = info.get(0).getTotalCountOfSymbol();
-        boolean flagAdd = false;
-        for (InformationOfVowelsInWord el : info) {
-            if (!el.getTotalCountOfSymbol().equals(totalCount) || !el.getCharacterSequence().equals(characterSequence)) {
-                if (flagAdd) {
-                    extracted(result, countOfVowels, characterSequence, totalCount);
-                }
-                countOfVowels = new ArrayList<>();
-                characterSequence = el.getCharacterSequence();
-                totalCount = el.getTotalCountOfSymbol();
-            }
-            countOfVowels.add(el.getCountOfVowels() * 1.0);
-            flagAdd = true;
-        }
-        if (flagAdd) {
-            extracted(result, countOfVowels, characterSequence, totalCount);
-        }
+        Map<String, Map<Integer, List<InformationOfVowelsInWord>>> groupByCharacterSequenceAndTotalCountSymbol = info
+                .stream()
+                .collect(Collectors.groupingBy(InformationOfVowelsInWord::getCharacterSequence, Collectors.groupingBy(InformationOfVowelsInWord::getTotalCountOfSymbol)));
+        groupByCharacterSequenceAndTotalCountSymbol.forEach((key, value) -> value.forEach((key1, value1) -> {
+            List<Double> countOfVowels = value1.stream().map(informationOfVowelsInWord -> informationOfVowelsInWord.getCountOfVowels() * 1.0).collect(Collectors.toList());
+            extracted(result, countOfVowels, key, key1);
+        }));
         return result;
     }
 

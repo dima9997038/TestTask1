@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class GetListFromStringImpl implements GetListWordsFromString {
     @Override
-    public List<String> words(String text) {
+    public List<String> getListWordsFromInputText(String text) {
         List<String> words = new ArrayList<>();
         BreakIterator breakIterator = BreakIterator.getWordInstance();
         breakIterator.setText(text);
@@ -18,7 +18,7 @@ public class GetListFromStringImpl implements GetListWordsFromString {
         while (BreakIterator.DONE != lastIndex) {
             int firstIndex = lastIndex;
             lastIndex = breakIterator.next();
-            if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(text.charAt(firstIndex))) {
+            if (lastIndex != BreakIterator.DONE && Character.isLetter(text.charAt(firstIndex))) {
                 words.add(text.substring(firstIndex, lastIndex).toLowerCase());
             }
         }
